@@ -47,6 +47,14 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        drink: {
+          beer: "hsl(var(--drink-beer))",
+          wine: "hsl(var(--drink-wine))",
+          spirit: "hsl(var(--drink-spirit))",
+          cocktail: "hsl(var(--drink-cocktail))",
+        },
+        success: "hsl(var(--success))",
+        warning: "hsl(var(--warning))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
