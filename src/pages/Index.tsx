@@ -5,10 +5,15 @@ import { DrinkLog } from "@/components/tracker/DrinkLog";
 import { TodayStats } from "@/components/tracker/TodayStats";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { DRINK_CATEGORIES } from "@/lib/drink-types";
+import { DRINK_CATEGORIES, getWeekLabel } from "@/lib/drink-types";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const Index = () => {
-  const { todayEntries, todayTotal, weekData, weekTotal, addDrink, removeDrink } = useDrinkLog();
+  const {
+    todayEntries, todayTotal, weekData, weekTotal,
+    weekOffset, prevWeek, nextWeek,
+    addDrink, removeDrink,
+  } = useDrinkLog();
 
   const handleAdd = (category: string, name: string, qty: number) => {
     const cat = DRINK_CATEGORIES.find((c) => c.key === category)!;
@@ -50,9 +55,24 @@ const Index = () => {
 
         {/* Week Chart */}
         <div className="rounded-2xl bg-card border border-border p-4">
-          <h2 className="text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wider">
-            This Week
-          </h2>
+          <div className="flex items-center justify-between mb-4">
+            <button
+              onClick={prevWeek}
+              className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+              {getWeekLabel(weekOffset)}
+            </h2>
+            <button
+              onClick={nextWeek}
+              disabled={weekOffset >= 0}
+              className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
           <WeekChart data={weekData} />
         </div>
 
