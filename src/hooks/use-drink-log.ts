@@ -19,6 +19,7 @@ function saveEntries(entries: DrinkEntry[]) {
 
 export function useDrinkLog() {
   const [entries, setEntries] = useState<DrinkEntry[]>(loadEntries);
+  const [weekOffset, setWeekOffset] = useState(0);
 
   useEffect(() => {
     saveEntries(entries);
@@ -50,7 +51,7 @@ export function useDrinkLog() {
   );
   const todayTotal = todayEntries.reduce((sum, e) => sum + e.quantity, 0);
 
-  const weekDays = getWeekDays();
+  const weekDays = getWeekDays(weekOffset);
   const weekData: DailySummary[] = weekDays.map((date) => {
     const dayEntries = entries.filter(
       (e) => new Date(e.timestamp).toISOString().split("T")[0] === date
@@ -64,5 +65,12 @@ export function useDrinkLog() {
 
   const weekTotal = weekData.reduce((sum, d) => sum + d.total, 0);
 
-  return { entries, todayEntries, todayTotal, weekData, weekTotal, addDrink, removeDrink };
+  const prevWeek = useCallback(() => setWeekOffset((o) => o - 1), []);
+  const nextWeek = useCallback(() => setWeekOffset((o) => Math.min(o + 1, 0)), []);
+
+  return {
+    entries, todayEntries, todayTotal, weekData, weekTotal,
+    weekOffset, prevWeek, nextWeek,
+    addDrink, removeDrink,
+  };
 }

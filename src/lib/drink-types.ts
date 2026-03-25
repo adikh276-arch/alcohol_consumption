@@ -28,15 +28,25 @@ export const DRINK_CATEGORIES: {
   { key: "cocktail", label: "Cocktail", icon: "🍹", defaultName: "Cocktail", defaultQty: 1.5 },
 ];
 
-export function getWeekDays(): string[] {
+export function getWeekDays(offset: number = 0): string[] {
   const days: string[] = [];
   const today = new Date();
   for (let i = 6; i >= 0; i--) {
     const d = new Date(today);
-    d.setDate(d.getDate() - i);
+    d.setDate(d.getDate() - i + offset * 7);
     days.push(d.toISOString().split("T")[0]);
   }
   return days;
+}
+
+export function getWeekLabel(offset: number): string {
+  if (offset === 0) return "This Week";
+  if (offset === -1) return "Last Week";
+  const days = getWeekDays(offset);
+  const start = new Date(days[0] + "T00:00:00");
+  const end = new Date(days[6] + "T00:00:00");
+  const fmt = (d: Date) => d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  return `${fmt(start)} – ${fmt(end)}`;
 }
 
 export function formatDateShort(dateStr: string): string {
