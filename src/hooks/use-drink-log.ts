@@ -1,32 +1,31 @@
 import { useState, useCallback, useEffect } from "react";
 import { DrinkEntry, DrinkCategory, DailySummary, getWeekDays } from "@/lib/drink-types";
 
-const STORAGE_KEY = "alcohol-tracker-log";
-
-function loadEntries(): DrinkEntry[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    return JSON.parse(raw).map((e: any) => ({ ...e, timestamp: new Date(e.timestamp) }));
-  } catch {
-    return [];
-  }
-}
-
-function saveEntries(entries: DrinkEntry[]) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
-}
-
 export function useDrinkLog() {
-  const [entries, setEntries] = useState<DrinkEntry[]>(loadEntries);
+  const [entries, setEntries] = useState<DrinkEntry[]>([]);
   const [weekOffset, setWeekOffset] = useState(0);
+  const userId = sessionStorage.getItem('user_id');
+
+  const fetchEntries = useCallback(async () => {
+    if (!userId) return;
+    try {
+      const response = await fetch('/api/consumption', {
+        headers: { 'x-user-id': userId }
+      });
+      const data = await response.json();
+      setEntries(data.map((e: any) => ({ ...e, timestamp: new Date(e.timestamp) })));
+    } catch (err) {
+      console.error('Failed to fetch entries:', err);
+    }
+  }, [userId]);
 
   useEffect(() => {
-    saveEntries(entries);
-  }, [entries]);
+    fetchEntries();
+  }, [fetchEntries]);
 
   const addDrink = useCallback(
-    (category: DrinkCategory, name: string, quantity: number, note?: string) => {
+    async (category: DrinkCategory, name: string, quantity: number, note?: string) => {
+      if (!userId) return;
       const entry: DrinkEntry = {
         id: crypto.randomUUID(),
         category,
@@ -35,15 +34,37 @@ export function useDrinkLog() {
         timestamp: new Date(),
         note,
       };
-      setEntries((prev) => [entry, ...prev]);
+      
+      try {
+        await fetch('/api/consumption', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'x-user-id': userId
+          },
+          body: JSON.stringify(entry)
+        });
+        setEntries((prev) => [entry, ...prev]);
+      } catch (err) {
+        console.error('Failed to add drink:', err);
+      }
       return entry;
     },
-    []
+    [userId]
   );
 
-  const removeDrink = useCallback((id: string) => {
-    setEntries((prev) => prev.filter((e) => e.id !== id));
-  }, []);
+  const removeDrink = useCallback(async (id: string) => {
+    if (!userId) return;
+    try {
+      await fetch(`/api/consumption/${id}`, {
+        method: 'DELETE',
+        headers: { 'x-user-id': userId }
+      });
+      setEntries((prev) => prev.filter((e) => e.id !== id));
+    } catch (err) {
+      console.error('Failed to remove drink:', err);
+    }
+  }, [userId]);
 
   const todayStr = new Date().toISOString().split("T")[0];
   const todayEntries = entries.filter(
