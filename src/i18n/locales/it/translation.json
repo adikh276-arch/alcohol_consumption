@@ -1,0 +1,23 @@
+{
+  "drink_tracker": "Monitoraggio delle bevande",
+  "quick_log": "Registro rapido",
+  "todays_log": "Registro di oggi",
+  "no_drinks_logged": "Nessuna bevanda registrata oggi",
+  "tap_above_to_log": "Tocca una bevanda qui sopra per accedere",
+  "logged": "latte",
+  "standard_drink": "bevanda standard",
+  "standard_drinks": "bevande standard",
+  "std_drink": "bevanda a trasmissione sessuale",
+  "std_drinks": "bevande a trasmissione sessuale",
+  "today": "Oggi",
+  "this_week": "Questa settimana",
+  "last_week": "La settimana scorsa",
+  "drinks": "bevande",
+  "last_7_days": "Ultimi 7 giorni",
+  "beer": "Birra",
+  "wine": "Vino",
+  "spirit": "Spirito",
+  "cocktail": "Cocktail",
+  "page_not_found": "Ops! Pagina non trovata",
+  "return_to_home": "Torna alla home"
+}

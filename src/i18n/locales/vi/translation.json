@@ -1,0 +1,23 @@
+{
+  "drink_tracker": "Công cụ theo dõi đồ uống",
+  "quick_log": "Nhật ký nhanh",
+  "todays_log": "Nhật ký hôm nay",
+  "no_drinks_logged": "Hôm nay không có đồ uống nào được ghi nhận.",
+  "tap_above_to_log": "Nhấn vào một loại đồ uống ở trên để đăng nhập.",
+  "logged": "đã đăng nhập",
+  "standard_drink": "đồ uống tiêu chuẩn",
+  "standard_drinks": "đồ uống tiêu chuẩn",
+  "std_drink": "đồ uống tiêu chuẩn",
+  "std_drinks": "đồ uống tiêu chuẩn",
+  "today": "Hôm nay",
+  "this_week": "Tuần này",
+  "last_week": "Tuần trước",
+  "drinks": "đồ uống",
+  "last_7_days": "7 ngày qua",
+  "beer": "Bia",
+  "wine": "Rượu",
+  "spirit": "Tinh thần",
+  "cocktail": "Cocktail",
+  "page_not_found": "Ôi! Không tìm thấy trang!",
+  "return_to_home": "Trở về Trang chủ"
+}

@@ -1,0 +1,23 @@
+{
+  "drink_tracker": "Tagasubaybay ng Inumin",
+  "quick_log": "Mabilisang Talaan",
+  "todays_log": "Talaan Ngayon",
+  "no_drinks_logged": "Walang naka-log na inumin ngayon",
+  "tap_above_to_log": "Mag-tap ng inumin sa itaas para mag-log",
+  "logged": "naka-log",
+  "standard_drink": "karaniwang inumin",
+  "standard_drinks": "mga karaniwang inumin",
+  "std_drink": "inuming may kaugnayan sa sakit",
+  "std_drinks": "mga inuming may kaugnayan sa sakit",
+  "today": "Ngayon",
+  "this_week": "Ngayong Linggo",
+  "last_week": "Noong nakaraang Linggo",
+  "drinks": "mga inumin",
+  "last_7_days": "Huling 7 araw",
+  "beer": "Serbesa",
+  "wine": "Alak",
+  "spirit": "Espiritu",
+  "cocktail": "Koktel",
+  "page_not_found": "Naku! Hindi natagpuan ang pahina",
+  "return_to_home": "Bumalik sa Bahay"
+}

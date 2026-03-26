@@ -1,3 +1,3 @@
-# Welcome to your Lovable project
+# Alcohol Consumption Tracker
 
-TODO: Document your project here
+Track your alcohol consumption and stay healthy.

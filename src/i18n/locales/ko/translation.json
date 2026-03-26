@@ -1,0 +1,23 @@
+{
+  "drink_tracker": "음료 추적기",
+  "quick_log": "빠른 로그",
+  "todays_log": "오늘의 기록",
+  "no_drinks_logged": "오늘은 음료 섭취 기록이 없습니다.",
+  "tap_above_to_log": "위의 음료를 탭하여 로그인하세요.",
+  "logged": "로그인됨",
+  "standard_drink": "표준 음료",
+  "standard_drinks": "표준 음료",
+  "std_drink": "표준 음료",
+  "std_drinks": "표준 음료",
+  "today": "오늘",
+  "this_week": "이번 주",
+  "last_week": "지난주",
+  "drinks": "음료수",
+  "last_7_days": "지난 7일",
+  "beer": "맥주",
+  "wine": "와인",
+  "spirit": "영혼",
+  "cocktail": "칵테일",
+  "page_not_found": "앗! 페이지를 찾을 수 없습니다.",
+  "return_to_home": "홈으로 돌아가기"
+}

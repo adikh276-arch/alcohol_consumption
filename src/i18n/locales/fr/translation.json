@@ -1,0 +1,23 @@
+{
+  "drink_tracker": "Suivi des boissons",
+  "quick_log": "Journal rapide",
+  "todays_log": "Journal du jour",
+  "no_drinks_logged": "Aucune boisson enregistrée aujourd'hui",
+  "tap_above_to_log": "Touchez une boisson ci-dessus pour vous connecter",
+  "logged": "connecté",
+  "standard_drink": "boisson standard",
+  "standard_drinks": "boissons standard",
+  "std_drink": "boisson MST",
+  "std_drinks": "boissons MST",
+  "today": "Aujourd'hui",
+  "this_week": "Cette semaine",
+  "last_week": "La semaine dernière",
+  "drinks": "boissons",
+  "last_7_days": "Les 7 derniers jours",
+  "beer": "Bière",
+  "wine": "Vin",
+  "spirit": "Esprit",
+  "cocktail": "Cocktail",
+  "page_not_found": "Oups ! Page introuvable",
+  "return_to_home": "Retour à l'accueil"
+}

@@ -1,0 +1,23 @@
+{
+  "drink_tracker": "Śledzenie napojów",
+  "quick_log": "Szybki dziennik",
+  "todays_log": "Dzisiejszy dziennik",
+  "no_drinks_logged": "Dziś nie odnotowano żadnych napojów",
+  "tap_above_to_log": "Kliknij napój powyżej, aby się zalogować",
+  "logged": "zalogowany",
+  "standard_drink": "standardowy napój",
+  "standard_drinks": "standardowe napoje",
+  "std_drink": "napój przenoszony drogą płciową",
+  "std_drinks": "napoje gazowane",
+  "today": "Dzisiaj",
+  "this_week": "W tym tygodniu",
+  "last_week": "Ostatni tydzień",
+  "drinks": "napoje",
+  "last_7_days": "Ostatnie 7 dni",
+  "beer": "Piwo",
+  "wine": "Wino",
+  "spirit": "Duch",
+  "cocktail": "Koktajl",
+  "page_not_found": "Ups! Strona nie została znaleziona",
+  "return_to_home": "Powrót do strony głównej"
+}

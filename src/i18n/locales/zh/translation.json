@@ -1,0 +1,23 @@
+{
+  "drink_tracker": "饮水追踪器",
+  "quick_log": "快速日志",
+  "todays_log": "今日日志",
+  "no_drinks_logged": "今天没有记录饮酒情况",
+  "tap_above_to_log": "点击上方饮品图标即可登录",
+  "logged": "已登录",
+  "standard_drink": "标准饮料",
+  "standard_drinks": "标准饮料",
+  "std_drink": "标准饮料",
+  "std_drinks": "标准饮料",
+  "today": "今天",
+  "this_week": "本星期",
+  "last_week": "上星期",
+  "drinks": "饮料",
+  "last_7_days": "过去7天",
+  "beer": "啤酒",
+  "wine": "葡萄酒",
+  "spirit": "精神",
+  "cocktail": "鸡尾酒",
+  "page_not_found": "糟糕！页面未找到",
+  "return_to_home": "返回首页"
+}

@@ -1,0 +1,23 @@
+{
+  "drink_tracker": "Registro de consumo de bebidas",
+  "quick_log": "Registro rápido",
+  "todays_log": "Registro de hoy",
+  "no_drinks_logged": "Hoy no se han registrado bebidas.",
+  "tap_above_to_log": "Toca una bebida arriba para iniciar sesión.",
+  "logged": "registrado",
+  "standard_drink": "bebida estándar",
+  "standard_drinks": "bebidas estándar",
+  "std_drink": "bebida estándar",
+  "std_drinks": "bebidas estándar",
+  "today": "Hoy",
+  "this_week": "Esta semana",
+  "last_week": "La semana pasada",
+  "drinks": "bebidas",
+  "last_7_days": "Últimos 7 días",
+  "beer": "Cerveza",
+  "wine": "Vino",
+  "spirit": "Espíritu",
+  "cocktail": "Cóctel",
+  "page_not_found": "¡Ups! Página no encontrada",
+  "return_to_home": "Regresar a la página principal"
+}

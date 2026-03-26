@@ -1,0 +1,23 @@
+{
+  "drink_tracker": "Pelacak Minuman",
+  "quick_log": "Catatan Singkat",
+  "todays_log": "Catatan Hari Ini",
+  "no_drinks_logged": "Tidak ada minuman yang tercatat hari ini.",
+  "tap_above_to_log": "Ketuk minuman di atas untuk masuk.",
+  "logged": "masuk",
+  "standard_drink": "minuman standar",
+  "standard_drinks": "minuman standar",
+  "std_drink": "minuman standar",
+  "std_drinks": "minuman standar",
+  "today": "Hari ini",
+  "this_week": "Minggu Ini",
+  "last_week": "Minggu lalu",
+  "drinks": "minuman",
+  "last_7_days": "7 hari terakhir",
+  "beer": "Bir",
+  "wine": "Anggur",
+  "spirit": "Roh",
+  "cocktail": "Koktail",
+  "page_not_found": "Ups! Halaman tidak ditemukan",
+  "return_to_home": "Kembali ke Halaman Utama"
+}

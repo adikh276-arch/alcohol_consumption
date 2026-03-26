@@ -1,0 +1,23 @@
+{
+  "drink_tracker": "متتبع المشروبات",
+  "quick_log": "سجل سريع",
+  "todays_log": "سجل اليوم",
+  "no_drinks_logged": "لم يتم تسجيل أي مشروبات اليوم",
+  "tap_above_to_log": "انقر على مشروب أعلاه لتسجيل الدخول",
+  "logged": "تم تسجيل الدخول",
+  "standard_drink": "مشروب قياسي",
+  "standard_drinks": "المشروبات القياسية",
+  "std_drink": "مشروب قياسي",
+  "std_drinks": "المشروبات الكحولية",
+  "today": "اليوم",
+  "this_week": "هذا الاسبوع",
+  "last_week": "الأسبوع الماضي",
+  "drinks": "مشروبات",
+  "last_7_days": "آخر 7 أيام",
+  "beer": "جعة",
+  "wine": "خمر",
+  "spirit": "روح",
+  "cocktail": "كوكتيل",
+  "page_not_found": "عذراً! الصفحة غير موجودة",
+  "return_to_home": "العودة إلى الصفحة الرئيسية"
+}

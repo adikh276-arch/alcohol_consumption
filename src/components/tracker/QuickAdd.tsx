@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { DRINK_CATEGORIES, DrinkCategory } from "@/lib/drink-types";
+import { useTranslation } from "react-i18next";
 
 interface QuickAddProps {
   onAdd: (category: DrinkCategory, name: string, quantity: number) => void;
@@ -13,6 +14,7 @@ const categoryColors: Record<DrinkCategory, string> = {
 };
 
 export function QuickAdd({ onAdd }: QuickAddProps) {
+  const { t } = useTranslation();
   return (
     <div className="grid grid-cols-4 gap-3">
       {DRINK_CATEGORIES.map((cat, i) => (
@@ -26,7 +28,7 @@ export function QuickAdd({ onAdd }: QuickAddProps) {
           className={`flex flex-col items-center gap-1.5 rounded-2xl border p-4 transition-colors ${categoryColors[cat.key]}`}
         >
           <span className="text-2xl">{cat.icon}</span>
-          <span className="text-xs font-medium text-foreground">{cat.label}</span>
+          <span className="text-xs font-medium text-foreground">{t(cat.key)}</span>
         </motion.button>
       ))}
     </div>

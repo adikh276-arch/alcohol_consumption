@@ -1,0 +1,23 @@
+{
+  "drink_tracker": "Drink Tracker",
+  "quick_log": "Quick Log",
+  "todays_log": "Today's Log",
+  "no_drinks_logged": "No drinks logged today",
+  "tap_above_to_log": "Tap a drink above to log",
+  "logged": "logged",
+  "standard_drink": "standard drink",
+  "standard_drinks": "standard drinks",
+  "std_drink": "std drink",
+  "std_drinks": "std drinks",
+  "today": "Today",
+  "this_week": "This Week",
+  "last_week": "Last Week",
+  "drinks": "drinks",
+  "last_7_days": "Last 7 days",
+  "beer": "Beer",
+  "wine": "Wine",
+  "spirit": "Spirit",
+  "cocktail": "Cocktail",
+  "page_not_found": "Oops! Page not found",
+  "return_to_home": "Return to Home"
+}

@@ -1,0 +1,23 @@
+{
+  "drink_tracker": "पेय ट्रैकर",
+  "quick_log": "त्वरित लॉग",
+  "todays_log": "आज का लॉग",
+  "no_drinks_logged": "आज कोई पेय दर्ज नहीं किया गया",
+  "tap_above_to_log": "लॉग इन करने के लिए ऊपर दिए गए किसी पेय पर टैप करें",
+  "logged": "लॉग इन",
+  "standard_drink": "मानक पेय",
+  "standard_drinks": "मानक पेय",
+  "std_drink": "एसटीडी पेय",
+  "std_drinks": "मानक पेय",
+  "today": "आज",
+  "this_week": "इस सप्ताह",
+  "last_week": "पिछले सप्ताह",
+  "drinks": "पेय",
+  "last_7_days": "पिछले 7 दिन",
+  "beer": "बियर",
+  "wine": "शराब",
+  "spirit": "आत्मा",
+  "cocktail": "कॉकटेल",
+  "page_not_found": "ओह! पेज नहीं मिला",
+  "return_to_home": "घर पर वापस"
+}

@@ -1,0 +1,23 @@
+{
+  "drink_tracker": "Getränke-Tracker",
+  "quick_log": "Kurzprotokoll",
+  "todays_log": "Heutiges Protokoll",
+  "no_drinks_logged": "Heute wurden keine Getränke protokolliert.",
+  "tap_above_to_log": "Tippe oben auf ein Getränk, um es zu protokollieren.",
+  "logged": "Protokolliert",
+  "standard_drink": "Standardgetränk",
+  "standard_drinks": "Standardgetränke",
+  "std_drink": "Standardgetränk",
+  "std_drinks": "Standardgetränke",
+  "today": "Heute",
+  "this_week": "Diese Woche",
+  "last_week": "Letzte Woche",
+  "drinks": "Getränke",
+  "last_7_days": "Letzte 7 Tage",
+  "beer": "Bier",
+  "wine": "Wein",
+  "spirit": "Geist",
+  "cocktail": "Cocktail",
+  "page_not_found": "Hoppla! Seite nicht gefunden",
+  "return_to_home": "Zurück zur Startseite"
+}

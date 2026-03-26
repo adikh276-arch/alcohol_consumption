@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Trash2 } from "lucide-react";
 import { DrinkEntry, DRINK_CATEGORIES, formatTime, DrinkCategory } from "@/lib/drink-types";
+import { useTranslation } from "react-i18next";
 
 interface DrinkLogProps {
   entries: DrinkEntry[];
@@ -15,12 +16,13 @@ const dotColors: Record<DrinkCategory, string> = {
 };
 
 export function DrinkLog({ entries, onRemove }: DrinkLogProps) {
+  const { t } = useTranslation();
   if (entries.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-10 text-muted-foreground">
         <span className="text-3xl mb-2">🌿</span>
-        <p className="text-sm">No drinks logged today</p>
-        <p className="text-xs mt-1">Tap a drink above to log</p>
+        <p className="text-sm">{t('no_drinks_logged')}</p>
+        <p className="text-xs mt-1">{t('tap_above_to_log')}</p>
       </div>
     );
   }
@@ -44,12 +46,12 @@ export function DrinkLog({ entries, onRemove }: DrinkLogProps) {
                 <div className="flex items-center gap-2">
                   <span className={`h-2 w-2 rounded-full ${dotColors[entry.category]}`} />
                   <span className="text-sm font-medium text-foreground truncate">
-                    {entry.name}
+                    {t(entry.name.toLowerCase() as any, { defaultValue: entry.name })}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 mt-0.5">
                   <span className="text-xs text-muted-foreground">
-                    {entry.quantity} std drink{entry.quantity !== 1 ? "s" : ""}
+                    {entry.quantity} {entry.quantity === 1 ? t('std_drink') : t('std_drinks')}
                   </span>
                   <span className="text-xs text-muted-foreground">•</span>
                   <span className="text-xs text-muted-foreground">

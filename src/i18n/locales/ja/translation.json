@@ -1,0 +1,23 @@
+{
+  "drink_tracker": "ドリンクトラッカー",
+  "quick_log": "クイックログ",
+  "todays_log": "今日の記録",
+  "no_drinks_logged": "本日は飲酒記録なし",
+  "tap_above_to_log": "上のドリンクをタップして記録する",
+  "logged": "ログ",
+  "standard_drink": "標準的な飲み物",
+  "standard_drinks": "標準的な飲み物",
+  "std_drink": "性感染症の飲み物",
+  "std_drinks": "性感染症の飲み物",
+  "today": "今日",
+  "this_week": "今週",
+  "last_week": "先週",
+  "drinks": "ドリンク",
+  "last_7_days": "過去7日間",
+  "beer": "ビール",
+  "wine": "ワイン",
+  "spirit": "精神",
+  "cocktail": "カクテル",
+  "page_not_found": "おっと！ページが見つかりません",
+  "return_to_home": "ホームに戻る"
+}

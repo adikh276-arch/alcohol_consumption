@@ -7,8 +7,11 @@ import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { DRINK_CATEGORIES, getWeekLabel } from "@/lib/drink-types";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { LanguageSelector } from "@/components/LanguageSelector";
 
 const Index = () => {
+  const { t } = useTranslation();
   const {
     todayEntries, todayTotal, weekData, weekTotal,
     weekOffset, prevWeek, nextWeek,
@@ -18,7 +21,10 @@ const Index = () => {
   const handleAdd = (category: string, name: string, qty: number) => {
     const cat = DRINK_CATEGORIES.find((c) => c.key === category)!;
     addDrink(category as any, name, qty);
-    toast(`${cat.icon} ${name} logged`, { description: `${qty} standard drink${qty !== 1 ? "s" : ""}` });
+    const drinkName = t(name.toLowerCase() as any, { defaultValue: name });
+    toast(`${cat.icon} ${drinkName} ${t('logged')}`, {
+      description: `${qty} ${qty === 1 ? t('standard_drink') : t('standard_drinks')}`
+    });
   };
 
   return (
@@ -31,15 +37,16 @@ const Index = () => {
           className="flex items-center justify-between"
         >
           <div>
-            <h1 className="text-xl font-bold text-foreground">Drink Tracker</h1>
+            <h1 className="text-xl font-bold text-foreground">{t('drink_tracker')}</h1>
             <p className="text-sm text-muted-foreground">
-              {new Date().toLocaleDateString("en-US", {
+              {new Date().toLocaleDateString(undefined, {
                 weekday: "long",
                 month: "long",
                 day: "numeric",
               })}
             </p>
           </div>
+          <LanguageSelector />
         </motion.div>
 
         {/* Stats */}
@@ -48,7 +55,7 @@ const Index = () => {
         {/* Quick Add */}
         <div>
           <h2 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wider">
-            Quick Log
+            {t('quick_log')}
           </h2>
           <QuickAdd onAdd={handleAdd} />
         </div>
@@ -63,7 +70,7 @@ const Index = () => {
               <ChevronLeft className="h-4 w-4" />
             </button>
             <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-              {getWeekLabel(weekOffset)}
+              {weekOffset === 0 ? t('this_week') : (weekOffset === -1 ? t('last_week') : getWeekLabel(weekOffset))}
             </h2>
             <button
               onClick={nextWeek}
@@ -79,7 +86,7 @@ const Index = () => {
         {/* Today's Log */}
         <div>
           <h2 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wider">
-            Today's Log
+            {t('todays_log')}
           </h2>
           <DrinkLog entries={todayEntries} onRemove={removeDrink} />
         </div>

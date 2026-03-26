@@ -1,0 +1,23 @@
+{
+  "drink_tracker": "İçecek Takipçisi",
+  "quick_log": "Hızlı Günlük",
+  "todays_log": "Bugünkü Günlük",
+  "no_drinks_logged": "Bugün hiçbir içecek kaydedilmedi.",
+  "tap_above_to_log": "Giriş yapmak için yukarıdaki bir içeceğe dokunun.",
+  "logged": "giriş yaptı",
+  "standard_drink": "standart içecek",
+  "standard_drinks": "standart içecekler",
+  "std_drink": "standart içecek",
+  "std_drinks": "standart içecekler",
+  "today": "Bugün",
+  "this_week": "Bu hafta",
+  "last_week": "Geçen hafta",
+  "drinks": "içecekler",
+  "last_7_days": "Son 7 gün",
+  "beer": "Bira",
+  "wine": "Şarap",
+  "spirit": "Ruh",
+  "cocktail": "Kokteyl",
+  "page_not_found": "Ups! Sayfa bulunamadı.",
+  "return_to_home": "Ana sayfaya dön"
+}
