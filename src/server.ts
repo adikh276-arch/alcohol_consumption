@@ -3,6 +3,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import pool from './lib/db';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -14,17 +15,16 @@ const port = process.env.PORT || 8080;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Verbose logging for debugging 404s
+// Verbose logging with 404 details
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
   next();
 });
 
-// Initialize schema on startup
+// Initialize schema
 const initDb = async () => {
   try {
-    const fs = await import('fs');
-    const schemaPath = path.join(__dirname, '../database/schema.sql');
+    const schemaPath = path.resolve(__app_root, 'database/schema.sql');
     if (fs.existsSync(schemaPath)) {
       const schema = fs.readFileSync(schemaPath, 'utf8');
       await pool.query(schema);
@@ -32,22 +32,18 @@ const initDb = async () => {
     }
   } catch (err) {
     console.error('Schema initialization failed:', err);
-    // Don't exit process, let server start so we can see errors in logs
   }
 };
 
+const __app_root = '/app';
 initDb();
 
 // User Initialization
 app.post('/api/user/init', async (req, res) => {
   const { id } = req.body;
   if (!id) return res.status(400).send('User ID required.');
-
   try {
-    await pool.query(
-      'INSERT INTO users (id) VALUES ($1) ON CONFLICT (id) DO NOTHING',
-      [id]
-    );
+    await pool.query('INSERT INTO users (id) VALUES ($1) ON CONFLICT (id) DO NOTHING', [id]);
     res.sendStatus(201);
   } catch (err) {
     console.error('User initialization error:', err);
@@ -55,16 +51,12 @@ app.post('/api/user/init', async (req, res) => {
   }
 });
 
-// Logs - Fetch for user
+// Logs - Fetch
 app.get('/api/consumption', async (req, res) => {
   const user_id = req.headers['x-user-id'] as string;
   if (!user_id) return res.status(401).send('Unauthorized');
-
   try {
-    const result = await pool.query(
-      'SELECT * FROM drink_entries WHERE user_id = $1 ORDER BY timestamp DESC',
-      [user_id]
-    );
+    const result = await pool.query('SELECT * FROM drink_entries WHERE user_id = $1 ORDER BY timestamp DESC', [user_id]);
     res.json(result.rows);
   } catch (err) {
     res.status(500).send(err);
@@ -74,13 +66,12 @@ app.get('/api/consumption', async (req, res) => {
 // Logs - Add
 app.post('/api/consumption', async (req, res) => {
   const user_id = req.headers['x-user-id'] as string;
-  const { id, category, name, quantity, timestamp, note } = req.body;
+  const { id, type, count, volume, percentage, timestamp } = req.body;
   if (!user_id) return res.status(401).send('Unauthorized');
-
   try {
     await pool.query(
-      'INSERT INTO drink_entries (id, user_id, category, name, quantity, timestamp, note) VALUES ($1, $2, $3, $4, $5, $6, $7)',
-      [id, user_id, category, name, quantity, timestamp, note]
+      'INSERT INTO drink_entries (id, user_id, type, count, volume, percentage, timestamp) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+      [id, user_id, type, count, volume, percentage, timestamp]
     );
     res.sendStatus(201);
   } catch (err) {
@@ -93,12 +84,8 @@ app.delete('/api/consumption/:id', async (req, res) => {
   const user_id = req.headers['x-user-id'] as string;
   const { id } = req.params;
   if (!user_id) return res.status(401).send('Unauthorized');
-
   try {
-    await pool.query(
-      'DELETE FROM drink_entries WHERE id = $1 AND user_id = $2',
-      [id, user_id]
-    );
+    await pool.query('DELETE FROM drink_entries WHERE id = $1 AND user_id = $2', [id, user_id]);
     res.sendStatus(204);
   } catch (err) {
     res.status(500).send(err);
@@ -108,31 +95,31 @@ app.delete('/api/consumption/:id', async (req, res) => {
 // Health check
 app.get('/api/ping', (req, res) => res.send('pong'));
 
-// Serve frontend in production
-if (process.env.NODE_ENV === 'production') {
-  const distPath = path.resolve(__dirname, '../dist');
-  console.log(`Serving static files from: ${distPath}`);
-  
-  // Serve static files from both subpath and root to be permissive
-  app.use('/alcohol_consumption', express.static(distPath));
-  app.use(express.static(distPath));
-
-  // Root redirect and SPA fallback
-  app.get('*', (req, res) => {
-    // Handle root or subpath root
-    if (req.path === '/' || req.path === '/alcohol_consumption' || req.path === '/alcohol_consumption/') {
-      return res.sendFile(path.join(distPath, 'index.html'));
-    }
-    
-    // Serve index.html for any remaining non-API paths
-    if (!req.path.startsWith('/api')) {
-      return res.sendFile(path.join(distPath, 'index.html'));
-    }
-    
-    res.status(404).send('Not Found');
-  });
+// Diagnostic Scan
+const distPath = '/app/dist';
+if (fs.existsSync(distPath)) {
+  console.log('--- DIRECTORY HIERARCHY ---');
+  const walk = (dir: string) => {
+    fs.readdirSync(dir).forEach(f => {
+      const p = path.join(dir, f);
+      if (fs.statSync(p).isDirectory()) walk(p);
+      else console.log(`[FILE] ${p}`);
+    });
+  };
+  walk(distPath);
 }
 
+// Aggressive Static Serving
+app.use('/alcohol_consumption', express.static(distPath));
+app.use(express.static(distPath));
+
+// Catch-all
+app.get('*', (req, res) => {
+  if (req.path.startsWith('/api')) return res.status(404).send('API endpoint not found');
+  console.log(`[SPA Fallback] Serving index.html for: ${req.url}`);
+  res.sendFile(path.join(distPath, 'index.html'));
+});
+
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server v1.8 running on port ${port}`);
 });
