@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { DrinkEntry, DrinkCategory, DailySummary, getWeekDays } from "@/lib/drink-types";
+import { apiFetch } from "@/lib/api";
 
 export function useDrinkLog() {
   const [entries, setEntries] = useState<DrinkEntry[]>([]);
@@ -9,7 +10,7 @@ export function useDrinkLog() {
   const fetchEntries = useCallback(async () => {
     if (!userId) return;
     try {
-      const response = await fetch('/api/consumption', {
+      const response = await apiFetch('/api/consumption', {
         headers: { 'x-user-id': userId }
       });
       const data = await response.json();
@@ -36,7 +37,7 @@ export function useDrinkLog() {
       };
       
       try {
-        await fetch('/api/consumption', {
+        await apiFetch('/api/consumption', {
           method: 'POST',
           headers: { 
             'Content-Type': 'application/json',
@@ -56,7 +57,7 @@ export function useDrinkLog() {
   const removeDrink = useCallback(async (id: string) => {
     if (!userId) return;
     try {
-      await fetch(`/api/consumption/${id}`, {
+      await apiFetch(`/api/consumption/${id}`, {
         method: 'DELETE',
         headers: { 'x-user-id': userId }
       });

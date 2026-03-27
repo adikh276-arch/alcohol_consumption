@@ -19,7 +19,8 @@ export function AuthHandshake() {
           if (data && data.user_id) {
             sessionStorage.setItem('user_id', data.user_id);
             // Initialize user in DB if they don't exist
-            await fetch('/api/user/init', {
+            const apiBase = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+            await fetch(`${apiBase}/api/user/init`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ id: data.user_id })
@@ -28,16 +29,19 @@ export function AuthHandshake() {
             searchParams.delete('token');
             navigate({ search: searchParams.toString() }, { replace: true });
           } else {
-            window.location.href = '/token';
+            const apiBase = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+            window.location.href = `${apiBase}/token`;
           }
         } catch (error) {
           console.error('Auth check failed:', error);
-          window.location.href = '/token';
+          const apiBase = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+          window.location.href = `${apiBase}/token`;
         }
       };
       getUserId();
     } else if (!sessionStorage.getItem('user_id')) {
-      window.location.href = '/token';
+      const apiBase = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+      window.location.href = `${apiBase}/token`;
     }
   }, [searchParams, navigate]);
 
