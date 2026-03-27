@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { DrinkEntry, DrinkCategory, DailySummary, getWeekDays } from "@/lib/drink-types";
-import { apiFetch } from "@/lib/api";
+import { pool } from "@/lib/db";
 
 export function useDrinkLog() {
   const [entries, setEntries] = useState<DrinkEntry[]>([]);
@@ -10,11 +10,8 @@ export function useDrinkLog() {
   const fetchEntries = useCallback(async () => {
     if (!userId) return;
     try {
-      const response = await apiFetch('/api/consumption', {
-        headers: { 'x-user-id': userId }
-      });
-      const data = await response.json();
-      setEntries(data.map((e: any) => ({ ...e, timestamp: new Date(e.timestamp) })));
+      const result = await pool.query('SELECT * FROM drink_entries WHERE user_id = $1 ORDER BY timestamp DESC', [userId]);
+      setEntries(result.rows.map((e: any) => ({ ...e, timestamp: new Date(e.timestamp) })));
     } catch (err) {
       console.error('Failed to fetch entries:', err);
     }
@@ -37,14 +34,10 @@ export function useDrinkLog() {
       };
       
       try {
-        await apiFetch('/api/consumption', {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json',
-            'x-user-id': userId
-          },
-          body: JSON.stringify(entry)
-        });
+        await pool.query(
+          'INSERT INTO drink_entries (id, user_id, category, name, quantity, timestamp, note) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+          [entry.id, userId, entry.category, entry.name, entry.quantity, entry.timestamp, entry.note || '']
+        );
         setEntries((prev) => [entry, ...prev]);
       } catch (err) {
         console.error('Failed to add drink:', err);
@@ -57,10 +50,7 @@ export function useDrinkLog() {
   const removeDrink = useCallback(async (id: string) => {
     if (!userId) return;
     try {
-      await apiFetch(`/api/consumption/${id}`, {
-        method: 'DELETE',
-        headers: { 'x-user-id': userId }
-      });
+      await pool.query('DELETE FROM drink_entries WHERE id = $1 AND user_id = $2', [id, userId]);
       setEntries((prev) => prev.filter((e) => e.id !== id));
     } catch (err) {
       console.error('Failed to remove drink:', err);
